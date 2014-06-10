@@ -4,6 +4,8 @@ serf members -status=alive | while read line ;do
   NEXT_ADDR=$(echo $line|cut -d' ' -f 2)
   NEXT_IP=${NEXT_ADDR%%:*}
   echo address=\"/$NEXT_HOST/$NEXT_SHORT/$NEXT_IP\"
+  IFS='.' read A B C D <<< "$NEXT_IP"
+  echo ptr-record=$D.$C.$B.$A.in-addr.arpa,$NEXT_HOST
 done > /etc/dnsmasq.d/0hosts
 
 service dnsmasq restart
