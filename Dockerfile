@@ -1,4 +1,4 @@
-FROM sequenceiq/serf:ng
+FROM sequenceiq/serf:0.6.1
 MAINTAINER SequenceIQ
 
 RUN yum install -y dnsmasq
